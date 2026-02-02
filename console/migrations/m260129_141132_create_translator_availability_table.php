@@ -18,7 +18,7 @@ class m260129_141132_create_translator_availability_table extends Migration
             // 1=Sunday, 2=Monday ... 7=Saturday (MySQL DAYOFWEEK format)
             'day_of_week' => $this->tinyInteger()->notNull(),
             'is_available' => $this->boolean()->notNull()->defaultValue(true),
-            'created_at' => $this->integer()->notNull(),
+            'created_at' => $this->timestamp()->notNull(),
         ], 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB');
 
         $this->createIndex('ux_translator_day', '{{%translator_availability}}', ['translator_id', 'day_of_week'], true);

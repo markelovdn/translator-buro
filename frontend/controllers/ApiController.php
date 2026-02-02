@@ -16,7 +16,6 @@ class ApiController extends Controller
         $this->layout = false;
         Yii::$app->response->format = Response::FORMAT_JSON;
         Yii::$app->response->charset = 'UTF-8';
-        Yii::$app->response->headers->set('Content-Type', 'application/json; charset=UTF-8');
         return parent::beforeAction($action);
     }
 
