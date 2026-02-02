@@ -60,22 +60,6 @@ class Translator extends ActiveRecord
     }
 
     /**
-     * Находит активных переводчиков, доступных на указанную дату
-     * @param string $date Дата в формате Y-m-d
-     * @return static[]
-     */
-    public static function findAvailableForDate(string $date): array
-    {
-        return self::find()
-            ->alias('t')
-            ->innerJoin('translator_availability a', 'a.translator_id = t.id')
-            ->where(['t.is_active' => 1, 'a.is_available' => 1])
-            ->andWhere('a.day_of_week = DAYOFWEEK(:date)', [':date' => $date])
-            ->orderBy('t.name')
-            ->all();
-    }
-
-    /**
      * Список id, name, email доступных на дату переводчиков (для API).
      * @param string $date Дата в формате Y-m-d
      * @return array<int, array{id: int, name: string, email: string|null}>
